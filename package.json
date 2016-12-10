@@ -1,0 +1,32 @@
+{
+  "name": "javascript-breakout-game",
+  "version": "0.1.0",
+  "description": "Javascript Breakout Game build with simple JS and canvas API",
+  "main": "index.html",
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JuanMaRuiz/Javascript-Breakout-Game.git"
+  },
+  "keywords": [
+    "javascript",
+    "canvas",
+    "game"
+  ],
+  "author": "JuanMa Ruiz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JuanMaRuiz/Javascript-Breakout-Game/issues"
+  },
+  "homepage": "https://github.com/JuanMaRuiz/Javascript-Breakout-Game",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "jit-grunt": "^0.10.0",
+    "jshint-stylish": "^2.2.1"
+  }
+}
