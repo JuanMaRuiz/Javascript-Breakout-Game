@@ -1,6 +1,30 @@
-/* $Canvas styles */
-#myCanvas {
-  background-color: #D2D7D3;
-  display: block;
-  margin: 0 auto;  
+body {
+  min-height: 500px;
 }
+
+/* $Canvas styles */
+.canvas-game {
+  background-color: rgb(44, 62, 79);
+  display: block;
+  margin: 0 auto;
+}
+
+/* $USER Styles */
+
+@font-face {
+  font-family: 'Arcade Font';
+  src: url('../fonts/arcade-font.woff');
+}
+
+.user {
+  color: #fff;
+  font-family: 'Arcade Font', Verdana, serif;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+}
+
+  .user-lives {
+    color: #C3272B;
+  }
