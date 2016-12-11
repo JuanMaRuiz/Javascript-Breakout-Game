@@ -10,15 +10,15 @@
     ball: {
       color: '#5B8930',
       radius: 10,
-      initialXPos: canvas.width / 2,
-      initialYPos: canvas.height -30
+      xPos: canvas.width / 2,
+      yPos: canvas.height -30
     },
     paddle: {
       color: '#ABB7B7',
       height: 10,
       width: 75,
-      initialXPosition: (canvas.width - 75) / 2,
-      initialYPosition: canvas.height - 10
+      xPos: (canvas.width - 75) / 2,
+      yPosition: canvas.height - 10
     }
   }
 
@@ -32,7 +32,7 @@
 
   function drawBall() {
     ctx.beginPath();
-    ctx.arc(settings.ball.initialXPos, settings.ball.initialYPos, settings.ball.radius, 0, Math.PI *2);
+    ctx.arc(settings.ball.xPos, settings.ball.yPos, settings.ball.radius, 0, Math.PI *2);
     ctx.fillStyle = settings.ball.color;
     ctx.fill();
     ctx.closePath();
@@ -41,7 +41,7 @@
   function drawPaddle() {
     ctx.beginPath();
     // x position, y position, width, height
-    ctx.rect(settings.paddle.initialXPosition, settings.paddle.initialYPosition, settings.paddle.width, settings.paddle.height);
+    ctx.rect(settings.paddle.xPos, settings.paddle.yPosition, settings.paddle.width, settings.paddle.height);
     ctx.fillStyle = settings.paddle.color;
     ctx.fill();
     ctx.closePath();
@@ -55,23 +55,30 @@
     drawBall();
     drawPaddle();
 
-    if( settings.ball.initialYPos + moveY < settings.ball.radius || settings.ball.initialYPos + moveY > canvas.height - settings.ball.radius) {
+    if( settings.ball.yPos + moveY < settings.ball.radius) {
       moveY = -moveY;
+    } else if ( settings.ball.yPos + moveY > canvas.height - settings.ball.radius ) {
+      if( settings.ball.xPos > settings.paddle.xPos && settings.ball.xPos < settings.paddle.xPos + settings.paddle.width ) {
+        moveY = -moveY;
+      } else {
+        alert("Game over!!");
+        document.location.reload();
+      }
     }
 
-    if( settings.ball.initialXPos + moveX < settings.ball.radius || settings.ball.initialXPos + moveX > canvas.width - settings.ball.radius) {
+    if( settings.ball.xPos + moveX < settings.ball.radius || settings.ball.xPos + moveX > canvas.width - settings.ball.radius) {
       moveX = -moveX;
     }
 
-    if(rightPressed && settings.paddle.initialXPosition < canvas.width - settings.paddle.width) {
-      settings.paddle.initialXPosition += 7;
+    if(rightPressed && settings.paddle.xPos < canvas.width - settings.paddle.width) {
+      settings.paddle.xPos += 7;
     }
-    if(leftPressed && settings.paddle.initialXPosition > 0) {
-      settings.paddle.initialXPosition -= 7;
+    if(leftPressed && settings.paddle.xPos > 0) {
+      settings.paddle.xPos -= 7;
     }
 
-    settings.ball.initialXPos += moveX;
-    settings.ball.initialYPos += moveY;
+    settings.ball.xPos += moveX;
+    settings.ball.yPos += moveY;
   }
 
   function keyDownHandler(event) {
