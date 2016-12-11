@@ -24,6 +24,11 @@
 
   var moveX = 2;
   var moveY = -2;
+  var rightPressed = false;
+  var leftPressed = false;
+
+  document.addEventListener("keydown", keyDownHandler);
+  document.addEventListener("keyup", keyUpHandler);
 
   function drawBall() {
     ctx.beginPath();
@@ -35,6 +40,7 @@
 
   function drawPaddle() {
     ctx.beginPath();
+    // x position, y position, width, height
     ctx.rect(settings.paddle.initialXPosition, settings.paddle.initialYPosition, settings.paddle.width, settings.paddle.height);
     ctx.fillStyle = settings.paddle.color;
     ctx.fill();
@@ -57,8 +63,35 @@
       moveX = -moveX;
     }
 
+    if(rightPressed && settings.paddle.initialXPosition < canvas.width - settings.paddle.width) {
+      settings.paddle.initialXPosition += 7;
+    }
+    if(leftPressed && settings.paddle.initialXPosition > 0) {
+      settings.paddle.initialXPosition -= 7;
+    }
+
     settings.ball.initialXPos += moveX;
     settings.ball.initialYPos += moveY;
+  }
+
+  function keyDownHandler(event) {
+    if(event.keyCode === 39) {
+      console.log("keyDownHandler: ", event);
+      rightPressed = true;
+      console.log("Move to right");
+    } else if(event.keyCode === 37){
+      leftPressed = true;
+      console.log("Move to left");
+    }
+  }
+
+  function keyUpHandler(event) {
+    if(event.keyCode === 39) {
+      console.log("KeyUpHandler: ", event);
+      rightPressed = false;
+    } else if(event.keyCode === 37){
+      leftPressed = false;
+    }
   }
 
   setInterval(draw, 10);
